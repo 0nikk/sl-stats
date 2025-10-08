@@ -1,0 +1,68 @@
+.player-list {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .list-header {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      color: #1a237e;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .subtitle {
+      color: #616161;
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #e0e0e0;
+      border-top-color: #1976d2;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      margin-top: 1rem;
+      color: #616161;
+    }
+  }
+
+  .error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .player-list {
+    padding: 1rem;
+
+    .list-header h2 {
+      font-size: 1.5rem;
+    }
+  }
+}

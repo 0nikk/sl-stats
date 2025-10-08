@@ -21,13 +21,19 @@ public class PlayerService {
         return playerRepository.findAll();
     }
     public List<Player> getPlayerByName(String name){
-        return playerRepository.findAll().stream().filter(player -> player.getPlayerName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+        return playerRepository.findAll().stream()
+                .filter(player -> player.getPlayerName() != null && player.getPlayerName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
     }
     public List<Player> getPlayersFromTeam(String team){
-        return playerRepository.findAll().stream().filter(player -> player.getTeam().toLowerCase().contains(team.toLowerCase())).collect(Collectors.toList());
+        return playerRepository.findAll().stream()
+                .filter(player -> player.getTeam() != null && player.getTeam().toLowerCase().contains(team.toLowerCase()))
+                .collect(Collectors.toList());
     }
     public List<Player> getPlayersByPos(String position){
-        return playerRepository.findAll().stream().filter(player -> player.getPosition().toLowerCase().contains(position.toLowerCase())).collect(Collectors.toList());
+        return playerRepository.findAll().stream()
+                .filter(player -> player.getPosition() != null && player.getPosition().toLowerCase().contains(position.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     public Player addPlayer(Player player){

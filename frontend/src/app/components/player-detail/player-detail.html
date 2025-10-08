@@ -1,0 +1,100 @@
+<div class="player-detail">
+  @if (loading) {
+    <div class="loading">Loading player data...</div>
+  } @else if (error) {
+    <div class="error">{{ error }}</div>
+    <button class="btn-back" (click)="goBack()">Back to Players</button>
+  } @else if (player) {
+    <div class="detail-header">
+      <button class="btn-back" (click)="goBack()">← Back</button>
+      <h2>{{ player.playerName }}</h2>
+    </div>
+
+    <div class="player-card">
+      <div class="card-section basic-info">
+        <h3>Basic Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Team:</span>
+            <span class="value">{{ player.team }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Position:</span>
+            <span class="value">{{ player.position }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Nation:</span>
+            <span class="value nation-value">
+              <span class="flag">{{ getNationFlag(player.nation) }}</span>
+              {{ extractNationCode(player.nation) }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="label">Age:</span>
+            <span class="value">{{ player.age }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-section stats">
+        <h3>Performance Stats</h3>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value">{{ player.minutesPlayed }}</div>
+            <div class="stat-label">Minutes Played</div>
+          </div>
+          <div class="stat-card highlight">
+            <div class="stat-value">{{ player.goals }}</div>
+            <div class="stat-label">Goals</div>
+          </div>
+          <div class="stat-card highlight">
+            <div class="stat-value">{{ player.assists }}</div>
+            <div class="stat-label">Assists</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">{{ player.penaltyGoals }}</div>
+            <div class="stat-label">Penalty Goals</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-section discipline">
+        <h3>Discipline</h3>
+        <div class="discipline-grid">
+          <div class="discipline-card yellow">
+            <div class="card-icon">🟨</div>
+            <div class="card-value">{{ player.yellowCards }}</div>
+            <div class="card-label">Yellow Cards</div>
+          </div>
+          <div class="discipline-card red">
+            <div class="card-icon">🟥</div>
+            <div class="card-value">{{ player.redCards }}</div>
+            <div class="card-label">Red Cards</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-section calculated-stats">
+        <h3>Calculated Stats</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Goals per 90:</span>
+            <span class="value">{{ (player.goals / (player.minutesPlayed / 90)).toFixed(2) }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Assists per 90:</span>
+            <span class="value">{{ (player.assists / (player.minutesPlayed / 90)).toFixed(2) }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Goal Contributions:</span>
+            <span class="value">{{ player.goals + player.assists }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">G+A per 90:</span>
+            <span class="value">{{ ((player.goals + player.assists) / (player.minutesPlayed / 90)).toFixed(2) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,53 @@
+<div class="search-filter">
+  <h3>Search & Filter Players</h3>
+
+  <div class="filter-grid">
+    <div class="filter-item">
+      <label for="name">Player Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="filters.name"
+        (ngModelChange)="onFilterChange()"
+        placeholder="Search by name..."
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="team">Team</label>
+      <input
+        id="team"
+        type="text"
+        [(ngModel)]="filters.team"
+        (ngModelChange)="onFilterChange()"
+        placeholder="Filter by team..."
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="position">Position</label>
+      <input
+        id="position"
+        type="text"
+        [(ngModel)]="filters.position"
+        (ngModelChange)="onFilterChange()"
+        placeholder="Filter by position..."
+      />
+    </div>
+
+    <div class="filter-item">
+      <label for="nation">Nation</label>
+      <input
+        id="nation"
+        type="text"
+        [(ngModel)]="filters.nation"
+        (ngModelChange)="onFilterChange()"
+        placeholder="Filter by nation..."
+      />
+    </div>
+  </div>
+
+  <div class="filter-actions">
+    <button class="btn-clear" (click)="clearFilters()">Clear All Filters</button>
+  </div>
+</div>

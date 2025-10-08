@@ -1,0 +1,19 @@
+<div class="player-list">
+  <div class="list-header">
+    <h2>Player Statistics</h2>
+    <p class="subtitle">Search, filter, and explore player performance data</p>
+  </div>
+
+  <app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>
+
+  @if (loading) {
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading players...</p>
+    </div>
+  } @else if (error) {
+    <div class="error-message">{{ error }}</div>
+  } @else {
+    <app-player-table [players]="players"></app-player-table>
+  }
+</div>

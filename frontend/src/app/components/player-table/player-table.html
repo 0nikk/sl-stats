@@ -1,0 +1,67 @@
+<div class="player-table-container">
+  @if (players.length === 0) {
+    <div class="no-data">No players found.</div>
+  } @else {
+    <div class="table-wrapper">
+      <table class="player-table">
+        <thead>
+          <tr>
+            <th (click)="sort('playerName')" class="sortable">
+              Player Name {{ getSortIcon('playerName') }}
+            </th>
+            <th (click)="sort('team')" class="sortable">
+              Team {{ getSortIcon('team') }}
+            </th>
+            <th (click)="sort('position')" class="sortable">
+              Position {{ getSortIcon('position') }}
+            </th>
+            <th (click)="sort('nation')" class="sortable">
+              Nation {{ getSortIcon('nation') }}
+            </th>
+            <th (click)="sort('age')" class="sortable number">
+              Age {{ getSortIcon('age') }}
+            </th>
+            <th (click)="sort('goals')" class="sortable number">
+              Goals {{ getSortIcon('goals') }}
+            </th>
+            <th (click)="sort('assists')" class="sortable number">
+              Assists {{ getSortIcon('assists') }}
+            </th>
+            <th (click)="sort('minutesPlayed')" class="sortable number">
+              Minutes {{ getSortIcon('minutesPlayed') }}
+            </th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (player of sortedPlayers; track player.playerName) {
+            <tr>
+              <td class="player-name">{{ player.playerName }}</td>
+              <td>{{ player.team }}</td>
+              <td>
+                <span class="position-badge">{{ player.position }}</span>
+              </td>
+              <td class="nation-cell">
+                <span class="flag">{{ getNationFlag(player.nation) }}</span>
+                <span>{{ extractNationCode(player.nation) }}</span>
+              </td>
+              <td class="number">{{ player.age }}</td>
+              <td class="number highlight">{{ player.goals }}</td>
+              <td class="number highlight">{{ player.assists }}</td>
+              <td class="number">{{ player.minutesPlayed }}</td>
+              <td>
+                <a [routerLink]="['/player', player.playerName]" class="btn-view">
+                  View Details
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-info">
+      Showing {{ players.length }} player{{ players.length !== 1 ? 's' : '' }}
+    </div>
+  }
+</div>
